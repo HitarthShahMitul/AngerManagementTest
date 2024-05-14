@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anger Management Test</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    p {
+      text-align: center;
+    }
+
+    form {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 10px;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    input[type="submit"] {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    #result {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Anger Management Test</h1>
+    <p>Answer the following questions honestly:</p>
+    <form id="angerTestForm">
+      <label for="question1"><b>1. Do you often feel angry for no apparent reason?</b></label>
+      <div>
+        <input type="radio" name="question1" value="yes"> Yes
+        <input type="radio" name="question1" value="no"> No
+      </div>
+
+      <label for="question2"><b>2. How often do you lose your temper?</b></label>
+      <div>
+        <input type="radio" name="question2" value="often"> Often
+        <input type="radio" name="question2" value="sometimes"> Sometimes
+        <input type="radio" name="question2" value="rarely"> Rarely
+      </div>
+
+      <label for="question3"><b>3. Do you find it difficult to calm down when you're angry?</b></label>
+      <div>
+        <input type="radio" name="question3" value="yes"> Yes
+        <input type="radio" name="question3" value="no"> No
+      </div>
+
+      <label for="question4"><b>4. Do you often feel like others are purposely trying to annoy you?</b></label>
+      <div>
+        <input type="radio" name="question4" value="yes"> Yes
+        <input type="radio" name="question4" value="no"> No
+      </div>
+
+      <label for="question5"><b>5. How do you react when you're criticized?</b></label>
+      <div>
+        <input type="radio" name="question5" value="getangry"> Get Angry
+        <input type="radio" name="question5" value="reflect"> Reflect on It
+        <input type="radio" name="question5" value="ignore"> Ignore It
+      </div>
+
+      <label for="question6"><b>6. Do you often feel resentful towards others?</b></label>
+      <div>
+        <input type="radio" name="question6" value="yes"> Yes
+        <input type="radio" name="question6" value="no"> No
+      </div>
+
+      <label for="question7"><b>7. How do you express your anger?</b></label>
+      <div>
+        <input type="radio" name="question7" value="yell"> Yell
+        <input type="radio" name="question7" value="remaincalm"> Remain Calm
+        <input type="radio" name="question7" value="cry"> Cry
+      </div>
+
+      <label for="question8"><b>8. Do you often regret your actions when angry?</b></label>
+      <div>
+        <input type="radio" name="question8" value="yes"> Yes
+        <input type="radio" name="question8" value="no"> No
+      </div>
+
+      <label for="question9"><b>9. How often do you hold grudges?</b></label>
+      <div>
+        <input type="radio" name="question9" value="often"> Often
+        <input type="radio" name="question9" value="sometimes"> Sometimes
+        <input type="radio" name="question9" value="rarely"> Rarely
+      </div>
+
+      <label for="question10"><b>10. Do you think your anger affects your relationships?</b></label>
+      <div>
+        <input type="radio" name="question10" value="yes"> Yes
+        <input type="radio" name="question10" value="no"> No
+      </div>
+
+      <input type="submit" value="Submit">
+    </form>
+    <div id="result"></div>
+  </div>
+  
+  <script>
+    document.getElementById('angerTestForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const formData = new FormData(this);
+      let score = 0;
+      
+      for (let value of formData.values()) {
+        if (value === 'yes' || value === 'getangry' || value === 'yell' || value === 'often') {
+          score++;
+        }
+      }
+      
+      let result = '';
+      if (score === 0) {
+        result = 'Congratulations! You seem to have good control over your anger.';
+      } else if (score <= 4) {
+        result = 'You may have some anger management issues. Consider seeking help.';
+      } else {
+        result = 'You seem to have significant anger management issues. It is advisable to seek professional help.';
+      }
+      
+      document.getElementById('result').textContent = result;
+    });
+  </script>
+</body>
+</html>
